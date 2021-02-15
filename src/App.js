@@ -22,7 +22,6 @@ import parseTrips from './utils/parseTrips';
 import { setMultipleStates } from './redux/globalRedux';
 
 import { AnimatedSwitch } from 'react-router-transition';
-import { AnimatedRoute } from 'react-router-transition';
 
 class App extends React.Component {
   static propTypes = {
@@ -47,16 +46,6 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <MainLayout>
-          <AnimatedRoute
-            path="/Trips"
-            component={Trips}
-            atEnter={{ offset: 200 }}
-            atLeave={{ offset: 200 }}
-            atActive={{ offset: 0 }}
-            mapStyles={(styles) => ({
-              transform: `translateY(${styles.offset}%)`,
-            })}
-          />
           <AnimatedSwitch location={location}
             atEnter={{ opacity: 0 }}
             atLeave={{ opacity: 0 }}
