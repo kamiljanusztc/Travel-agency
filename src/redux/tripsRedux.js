@@ -1,5 +1,8 @@
 /* SELECTORS */
 
+// import { addTag } from "./filtersRedux";
+// import { getAllTags } from "./tagsRedux";
+
 export const getAllTrips = ({ trips }) => trips;
 
 export const getFilteredTrips = ({ trips, filters }) => {
@@ -12,10 +15,26 @@ export const getFilteredTrips = ({ trips, filters }) => {
   }
 
   // TODO - filter by duration
+  console.log('sprawdz duration', filters.duration);
+  if (filters.duration) {
+    const durationFrom = filters.duration.from;
+    const durationTo = filters.duration.to;
+
+    output = output.filter(trip => trip.days >= durationFrom && trip.days <= durationTo);
+    console.log('output duration', output);
+  }
 
   // TODO - filter by tags
+  if (filters.tags) {
+    for (let tag of filters.tags) {
+      output = output.filter(trip => trip.tags.includes(tag));
+      console.log('output tag', output);
+    }
+  }
 
   // TODO - sort by cost descending (most expensive goes first)
+  const descending = output.sort((a, b) => (parseInt(b.cost.slice(1)) > parseInt(a.cost.slice(1))) ? 1 : -1);
+  console.log('price descending', descending);
 
   return output;
 };
