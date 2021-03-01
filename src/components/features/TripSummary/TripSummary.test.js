@@ -66,3 +66,4 @@ describe('Component TripSummary', () => {
   });
 
 });
+
