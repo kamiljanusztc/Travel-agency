@@ -120,19 +120,20 @@ for (let type in optionTypes) {
 
       case 'icons': {
         /* test for icon */
-        // it('contains div with class icon', () => {
-        //   const div = renderedSubcomponent.find('div');
-        //   expect(div.length).toBe(1);
+        it('contains div with class icon', () => {
 
-        //   const emptyIcon = div.find('Icon[name="times-circle"]').length;
-        //   expect(emptyIcon).toBe(1);
+          const div = renderedSubcomponent.find('div').at(0);
+          expect(div.length).toBe(1);
 
-        //   const icons = div.find('.icon').not('[name="h-square"]');
-        //   expect(icons.length).toBe(mockProps.values.length);
-        //   expect(icons.at(0).prop('value')).toBe(mockProps.values[0].id);
-        //   expect(icons.at(1).prop('value')).toBe(mockProps.values[1].id);
+          const emptyIcon = renderedSubcomponent.find('Icon').not('[name="h-square"]').length;
+          expect(emptyIcon).toBe(1);
 
-        // });
+          const firstIcon = div.childAt(1);
+          const secondIcon = div.childAt(2);
+          expect(firstIcon.length + secondIcon.length).toBe(mockProps.values.length);
+          expect(firstIcon.text()).toEqual(expect.stringContaining(mockProps.values[0].name));
+          expect(secondIcon.text()).toEqual(expect.stringContaining(mockProps.values[1].name));
+        });
 
         it('should run setOrderOption function on click', () => {
           renderedSubcomponent.find('.icon').last().simulate('click');
