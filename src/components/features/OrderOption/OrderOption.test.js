@@ -145,7 +145,7 @@ for (let type in optionTypes) {
       }
 
       case 'checkboxes': {
-        /* test for icon */
+        /* test for checkboxes */
         it('contains div with input', () => {
           const div = renderedSubcomponent.find('div');
           expect(div.length).toBe(1);
