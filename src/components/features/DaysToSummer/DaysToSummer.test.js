@@ -36,7 +36,7 @@ const mockDate = customDate => class extends Date {
 
 const checkTitleOnDay = (day, expectedTitle) => {
   it(`should show correct at ${day}`, () => {
-    global.Date = mockDate(`${day}T00:00:00.135Z`);
+    global.Date = mockDate(`${day}T00:00:00.000Z`);
 
     const component = shallow(<DaysToSummer />);
     const renderedTitle = component.find(select.title).text();
@@ -47,13 +47,13 @@ const checkTitleOnDay = (day, expectedTitle) => {
 };
 
 describe('Component DaysToSummer with mocked Date', () => {
-  // checkTitleOnDay('2021-06-21', '');
+  checkTitleOnDay('2021-06-21', '');
   checkTitleOnDay('2021-08-08', '');
   checkTitleOnDay('2021-09-23', '');
 });
 
 describe('Component DaysToSummer with mocked Date', () => {
-  // checkTitleOnDay('2021-06-20', '1 day to summer!');
-  // checkTitleOnDay('2021-05-28', '24 days to summer!');
-  // checkTitleOnDay('2021-09-24', '270 days to summer!');
+  checkTitleOnDay('2021-06-20', '1 day to summer!');
+  checkTitleOnDay('2021-05-28', '24 days to summer!');
+  checkTitleOnDay('2021-09-24', '270 days to summer!');
 });

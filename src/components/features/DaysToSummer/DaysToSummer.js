@@ -1,25 +1,27 @@
 import React from 'react';
-import styles from './HappyHourAd.scss';
-// import PropTypes from 'prop-types';
-// import { formatTime } from '../../../utils/formatTime';
+import styles from './DaysToSummer.scss';
 
 class DaysToSummer extends React.Component {
 
   getCuntdownDays() {
     const currentDay = new Date();
-    const startSummerDate = new Date(Date.UTC(currentDay.getUTCFullYear(), 6, 21));
-    const stopSummerDate = new Date(Date.UTC(currentDay.getUTCFullYear(), 9, 23));
-    const daysToSummer = Math.round(startSummerDate.getTime() - currentDay.getTime() / 1000 * 60 * 60 * 24);
+    const startSummerDate = new Date(Date.UTC(currentDay.getUTCFullYear(), 5, 21));
+    const stopSummerDate = new Date(Date.UTC(currentDay.getUTCFullYear(), 8, 23));
+
+    if (currentDay.getTime() > stopSummerDate.getTime()) {
+      startSummerDate.setFullYear(startSummerDate.getFullYear() + 1);
+    }
+
+    const daysToSummer = Math.round((startSummerDate.getTime() - currentDay.getTime()) / (1000 * 60 * 60 * 24));
 
     if (currentDay.getTime() > startSummerDate.getTime() && currentDay.getTime() < stopSummerDate.getTime()) {
       return null;
-    } else if (currentDay.getTime() < startSummerDate.getTime() || currentDay.getTime() > stopSummerDate.getTime()) {
-      return daysToSummer + ' days to summer!';
     } else if (daysToSummer === 1) {
       return '1 day to summer!';
+    } else if (currentDay.getTime() < startSummerDate.getTime() || currentDay.getTime() > stopSummerDate.getTime()) {
+      return daysToSummer + ' days to summer!';
     }
   }
-
 
   render() {
     const daysToSummer = this.getCuntdownDays();
@@ -32,9 +34,5 @@ class DaysToSummer extends React.Component {
 
 
 }
-
-// DaysToSummer.propTypes = {
-//   title: PropTypes.string,
-// };
 
 export default DaysToSummer;
